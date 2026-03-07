@@ -1,12 +1,12 @@
 use bevy::prelude::*;
 
-use crate::plugins::{player::Player, util::PreviousTranslation};
+use crate::plugins::{input::InputActionState, player::Player, util::PreviousTranslation};
 
-<<<<<<< HEAD
 pub fn update(input_state: Res<InputActionState>, mut player: Single<(&Player, &mut Transform)>) {
     player.1.translation.x += input_state.move_axis.x;
     player.1.translation.y += input_state.move_axis.y;
-=======
+}
+
 pub fn player_update(
     mut camera_transform: Single<&mut Transform, With<Camera3d>>,
     player_transform: Single<&Transform, With<Player>>,
@@ -21,5 +21,4 @@ pub fn player_update(
     let new = previous.lerp(target, fixed_time.overstep_fraction());
 
     camera_transform.translation = new;
->>>>>>> 137afdf (wip)
 }
