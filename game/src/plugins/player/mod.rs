@@ -3,7 +3,10 @@ use bevy::prelude::*;
 mod player_fixed_update;
 mod player_startup;
 mod player_update;
+
 pub struct PlayerPlugin;
+
+const PLAYER_SPEED: f32 = 10.0;
 
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
@@ -13,5 +16,5 @@ impl Plugin for PlayerPlugin {
     }
 }
 
-#[derive(Component)]
+#[derive(Component, Debug)]
 pub struct Player;

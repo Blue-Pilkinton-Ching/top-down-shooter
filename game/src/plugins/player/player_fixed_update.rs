@@ -1,18 +1,10 @@
-use bevy::prelude::*;
-
+use crate::player::PLAYER_SPEED;
 use crate::plugins::{input::InputActionState, player::Player};
+use bevy::prelude::*;
 
 pub fn fixed_update(
     input_state: Res<InputActionState>,
     mut transform: Single<&mut Transform, With<Player>>,
 ) {
-    transform.translation.z -= 1.0;
-
-    if input_state.move_left {
-        transform.translation.x -= 1.0;
-    }
-
-    if input_state.move_right {
-        transform.translation.x += 1.0;
-    }
+    transform.translation.x += input_state.move_axis.x * PLAYER_SPEED;
 }
