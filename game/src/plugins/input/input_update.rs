@@ -1,20 +1,34 @@
 use bevy::prelude::*;
 
+const LEFT_KEYS: [KeyCode; 3] = [KeyCode::KeyA, KeyCode::ArrowLeft, KeyCode::KeyJ];
+const RIGHT_KEYS: [KeyCode; 3] = [KeyCode::KeyD, KeyCode::ArrowRight, KeyCode::KeyL];
+
+const UP_KEYS: [KeyCode; 3] = [KeyCode::KeyW, KeyCode::ArrowUp, KeyCode::KeyI];
+const DOWN_KEYS: [KeyCode; 3] = [KeyCode::KeyS, KeyCode::ArrowDown, KeyCode::KeyK];
+
 pub fn update(keys: Res<ButtonInput<KeyCode>>, mut input_state: ResMut<super::InputActionState>) {
     // TODO: Handle other forms of input (gamepads?, mouse?, mobile touch? )
-    const LEFT_KEYS: [KeyCode; 3] = [KeyCode::KeyA, KeyCode::ArrowLeft, KeyCode::KeyJ];
 
-    if LEFT_KEYS.iter().any(|key| keys.pressed(*key)) {
-        input_state.move_left = true;
-    } else {
-        input_state.move_left = false;
+    let left_pressed = LEFT_KEYS.iter().any(|key| keys.pressed(*key));
+    let right_pressed = RIGHT_KEYS.iter().any(|key| keys.pressed(*key));
+    let up_pressed = UP_KEYS.iter().any(|key| keys.pressed(*key));
+    let down_pressed = DOWN_KEYS.iter().any(|key| keys.pressed(*key));
+
+    if left_pressed != right_pressed {
+        if left_pressed {
+            input_state.move_axis.x = -1.0;
+        } else {
+            input_state.move_axis.x = 1.0;
+        }
     }
 
-    const RIGHT_KEYS: [KeyCode; 3] = [KeyCode::KeyD, KeyCode::ArrowRight, KeyCode::KeyL];
-
-    if RIGHT_KEYS.iter().any(|key| keys.pressed(*key)) {
-        input_state.move_right = true;
-    } else {
-        input_state.move_right = false;
+    if up_pressed != down_pressed {
+        if up_pressed {
+            input_state.move_axis.y = -1.0;
+        } else {
+            input_state.move_axis.y = 1.0;
+        }
     }
+
+    let _ = input_state.move_axis.normalize();
 }

@@ -8,6 +8,7 @@ opt-level = 1              # Some optimization for better runtime performance wi
 
 [profile.dev.package."*"]
 opt-level = 3              # Optimize dependencies fully (compile once, run many times)
+debug = true               # Enable debug symbols for dependencies
 
 # Release profile - optimized for smallest bundle size
 [profile.release]

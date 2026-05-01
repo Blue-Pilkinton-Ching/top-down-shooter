@@ -2,16 +2,7 @@ use bevy::prelude::*;
 
 use crate::plugins::{input::InputActionState, player::Player};
 
-pub fn update(
-    mut commands: Commands,
-    input_state: Res<InputActionState>,
-    mut player: Single<(&Player, &mut Transform)>,
-) {
-    if input_state.move_left {
-        player.1.translation.x -= 0.1;
-    }
-
-    if input_state.move_right {
-        player.1.translation.x -= 0.1;
-    }
+pub fn update(input_state: Res<InputActionState>, mut player: Single<(&Player, &mut Transform)>) {
+    player.1.translation.x += input_state.move_axis.x;
+    player.1.translation.y += input_state.move_axis.y;
 }

@@ -6,8 +6,7 @@ pub struct InputPlugin;
 
 #[derive(Resource, Default)]
 pub struct InputActionState {
-    pub move_left: bool,
-    pub move_right: bool,
+    pub move_axis: Vec2,
 }
 
 impl Plugin for InputPlugin {
