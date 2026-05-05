@@ -7,4 +7,5 @@ pub fn fixed_update(
     mut transform: Single<&mut Transform, With<Player>>,
 ) {
     transform.translation.x += input_state.move_axis.x * PLAYER_SPEED;
+    transform.translation.y += input_state.move_axis.y * PLAYER_SPEED;
 }

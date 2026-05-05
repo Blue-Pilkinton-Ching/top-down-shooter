@@ -14,20 +14,20 @@ pub fn update(keys: Res<ButtonInput<KeyCode>>, mut input_state: ResMut<super::In
     let up_pressed = UP_KEYS.iter().any(|key| keys.pressed(*key));
     let down_pressed = DOWN_KEYS.iter().any(|key| keys.pressed(*key));
 
-    if left_pressed != right_pressed {
-        if left_pressed {
-            input_state.move_axis.x = -1.0;
-        } else {
-            input_state.move_axis.x = 1.0;
-        }
+    if left_pressed == right_pressed {
+        input_state.move_axis.x = 0.;
+    } else if left_pressed {
+        input_state.move_axis.x = -1.0;
+    } else {
+        input_state.move_axis.x = 1.0;
     }
 
-    if up_pressed != down_pressed {
-        if up_pressed {
-            input_state.move_axis.y = -1.0;
-        } else {
-            input_state.move_axis.y = 1.0;
-        }
+    if up_pressed == down_pressed {
+        input_state.move_axis.y = 0.;
+    } else if up_pressed {
+        input_state.move_axis.y = 1.0;
+    } else {
+        input_state.move_axis.y = -1.0;
     }
 
     let _ = input_state.move_axis.normalize();

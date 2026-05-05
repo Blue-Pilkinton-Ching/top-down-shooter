@@ -5,4 +5,5 @@ edition = "2024"
 
 [dependencies]
 # Could potentially use webgpu feature in the future
-bevy = {version = "0.18.0", default-features = false, features = ["2d", "ui"]} 
+bevy = {version = "0.19.0-dev", default-features = false, features = ["2d", "ui", "webgpu"], path = "/Users/bluepilkinton-ching/Documents/coding/open-source/bevy/bevy-feat-tileset-grid"}
+

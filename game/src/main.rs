@@ -19,7 +19,7 @@ fn main() {
             input::InputPlugin,
             util::UtilPlugins,
             player::PlayerPlugin,
-            landscape::LandscapePlugin,
+            world::WorldPlugin,
         ))
         .run();
 }
